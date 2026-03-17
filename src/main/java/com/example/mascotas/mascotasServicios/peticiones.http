@@ -1,0 +1,183 @@
+### ==========================================
+### 1. CLIENTE (/cliente)
+### ==========================================
+
+### 1.1 Crear un Cliente (POST)
+POST http://localhost:8080/cliente
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "apPaterno": "Lopez",
+  "apMaterno": "Ruiz",
+  "email": "ana.lopez@email.com"
+}
+
+### 1.2 Ver todos los clientes (GET)
+GET http://localhost:8080/cliente
+
+### 1.3 Ver un cliente específico por ID (GET)
+GET http://localhost:8080/cliente/1
+
+### 1.4 Actualizar un cliente (PUT)
+PUT http://localhost:8080/cliente/1
+Content-Type: application/json
+
+{
+  "nombre": "Ana Maria",
+  "apPaterno": "Lopez",
+  "apMaterno": "Ruiz",
+  "email": "ana.maria@email.com"
+}
+
+### 1.5 Eliminar un cliente (DELETE)
+DELETE http://localhost:8080/cliente/1
+
+
+### ==========================================
+### 2. DIRECCION (/direccion)
+### ==========================================
+
+### 2.1 Crear una Direccion (POST) - Requiere que exista el cliente
+POST http://localhost:8080/direccion
+Content-Type: application/json
+
+{
+  "calle": "Av. Siempreviva",
+  "numero": "742",
+  "cliente": {
+    "idCliente": 1
+  }
+}
+
+### 2.2 Ver todas las direcciones (GET)
+GET http://localhost:8080/direccion
+
+### 2.3 Ver una direccion específica por ID (GET)
+GET http://localhost:8080/direccion/1
+
+### 2.4 Actualizar una direccion (PUT)
+PUT http://localhost:8080/direccion/1
+Content-Type: application/json
+
+{
+  "calle": "Av. Siempreviva",
+  "numero": "742-A"
+}
+
+### 2.5 Eliminar una direccion (DELETE)
+DELETE http://localhost:8080/direccion/1
+
+
+### ==========================================
+### 3. MASCOTA (/mascota)
+### ==========================================
+
+### 3.1 Crear una Mascota (POST) - Requiere que exista el cliente
+POST http://localhost:8080/mascota
+Content-Type: application/json
+
+{
+  "nombre": "Michi",
+  "tipo": "Gato",
+  "sexo": "M",
+  "edad": 2,
+  "enPeligro": false,
+  "cliente": {
+    "idCliente": 1
+  }
+}
+
+### 3.2 Ver todas las mascotas (GET)
+GET http://localhost:8080/mascota
+
+### 3.3 Ver una mascota específica por ID (GET)
+GET http://localhost:8080/mascota/1
+
+### 3.4 Actualizar una mascota (PUT)
+PUT http://localhost:8080/mascota/1
+Content-Type: application/json
+
+{
+  "nombre": "Michi",
+  "tipo": "Gato",
+  "sexo": "M",
+  "edad": 3,
+  "enPeligro": false
+}
+
+### 3.5 Eliminar una mascota (DELETE)
+DELETE http://localhost:8080/mascota/1
+
+
+### ==========================================
+### 4. SERVICIO (/servicio)
+### ==========================================
+
+### 4.1 Crear un Servicio (POST)
+POST http://localhost:8080/servicio
+Content-Type: application/json
+
+{
+  "descripcion": "Baño básico",
+  "descripcion2": "Incluye shampoo y secado",
+  "precio": 250.00
+}
+
+### 4.2 Ver todos los servicios (GET)
+GET http://localhost:8080/servicio
+
+### 4.3 Ver un servicio específico por ID (GET)
+GET http://localhost:8080/servicio/1
+
+### 4.4 Actualizar un servicio (PUT)
+PUT http://localhost:8080/servicio/1
+Content-Type: application/json
+
+{
+  "descripcion": "Baño completo",
+  "descripcion2": "Incluye shampoo, secado y corte de uñas",
+  "precio": 300.50
+}
+
+### 4.5 Eliminar un servicio (DELETE)
+DELETE http://localhost:8080/servicio/1
+
+
+### ==========================================
+### 5. MASCOTA_SERVICIO (/mascota-servicio)
+### ==========================================
+
+### 5.1 Asignar un servicio a una mascota (POST)
+# Requiere que exista la mascota 1 y el servicio 1
+POST http://localhost:8080/mascota-servicio
+Content-Type: application/json
+
+{
+  "fecha": "2026-03-08",
+  "nota": "Llegó un poco asustado",
+  "mascota": {
+    "idMascota": 1
+  },
+  "servicio": {
+    "idServicio": 1
+  }
+}
+
+### 5.2 Ver todos los historiales (GET)
+GET http://localhost:8080/mascota-servicio
+
+### 5.3 Ver un historial específico (GET)
+GET http://localhost:8080/mascota-servicio/1
+
+### 5.4 Actualizar un historial (PUT)
+PUT http://localhost:8080/mascota-servicio/1
+Content-Type: application/json
+
+{
+  "fecha": "2026-03-08",
+  "nota": "Se portó muy bien al final de la sesión"
+}
+
+### 5.5 Eliminar un historial (DELETE)
+DELETE http://localhost:8080/mascota-servicio/1
