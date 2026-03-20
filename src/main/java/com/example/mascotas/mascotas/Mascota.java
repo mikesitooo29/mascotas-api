@@ -2,14 +2,13 @@ package com.example.mascotas.mascotas;
 
 import com.example.mascotas.clientes.Cliente;
 import com.example.mascotas.mascotasServicios.MascotaServicio;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.awt.*;
 import java.util.List;
 
 @AllArgsConstructor
@@ -30,12 +29,12 @@ public class Mascota {
     private byte edad;
     private boolean enPeligro;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "idCliente")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnoreProperties({"direccion", "mascotas"})
     private Cliente cliente;
 
+    @JsonIgnoreProperties({"mascota"})
     @OneToMany(mappedBy = "mascota")
     private List<MascotaServicio> mascotaServicios;
-
 }

@@ -2,7 +2,7 @@ package com.example.mascotas.mascotasServicios;
 
 import com.example.mascotas.mascotas.Mascota;
 import com.example.mascotas.servicios.Servicio;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,12 +27,11 @@ public class MascotaServicio {
 
     @ManyToOne
     @JoinColumn(name = "idMascota")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnoreProperties({"mascotaServicios", "cliente"})
     private Mascota mascota;
 
     @ManyToOne
     @JoinColumn(name = "idServicio")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnoreProperties({"mascotaServicios"})
     private Servicio servicio;
-
 }

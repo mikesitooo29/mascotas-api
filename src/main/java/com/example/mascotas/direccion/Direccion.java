@@ -1,8 +1,7 @@
 package com.example.mascotas.direccion;
 
-
 import com.example.mascotas.clientes.Cliente;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,8 +25,6 @@ public class Direccion {
 
     @OneToOne
     @JoinColumn(name = "idCliente")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnoreProperties({"direccion", "mascotas"})
     private Cliente cliente;
-
 }
-

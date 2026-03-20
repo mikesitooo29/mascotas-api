@@ -2,6 +2,7 @@ package com.example.mascotas.clientes;
 
 import com.example.mascotas.direccion.Direccion;
 import com.example.mascotas.mascotas.Mascota;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +15,6 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "cliente")
-
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +28,11 @@ public class Cliente {
     @Column(nullable = false, length = 50)
     private String email;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
     private Direccion direccion;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Mascota> mascotas = new ArrayList<>();
-
 }
